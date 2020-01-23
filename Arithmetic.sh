@@ -19,4 +19,21 @@ do
 	count=$(( count+1 ))
 done
 echo ${arr[@]}
+length=${#arr[@]}
 
+function DescendingOrder() {
+	for (( i=0; i<$length; i++ ))
+	do
+		for(( j=i+1; j<=$length; j++ ))
+		do
+			if [[ ${arr[i]%.*} -lt ${arr[j]%.*} ]]
+			then
+				temp=${arr[i]}
+				arr[i]=${arr[j]}
+				arr[j]=$temp
+			fi
+		done
+	done
+	echo ${arr[@]}
+}
+DescendingOrder
