@@ -6,3 +6,4 @@ echo "$a $b $c"
 echo "scale=2;$a+($b*$c)" | bc 
 echo "scale=2;($a*$b)+$c" | bc
 echo "scale=3;$c+($a/$b)" | bc
+echo "scale=2;($a%$b)+$c" | bc
