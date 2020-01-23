@@ -11,6 +11,7 @@ results[operation1]=`echo "scale=2;$a+($b*$c)" | bc `
 results[operation2]=`echo "scale=2;($a*$b)+$c" | bc `
 results[operation3]=`echo "scale=3;$c+($a/$b)" | bc `
 results[operation4]=`echo "scale=2;($a%$b)+$c" | bc `
+echo "Dictionary : "
 echo ${results[@]}
 
 while [[ $count -ne ${#results[@]} ]]
@@ -18,6 +19,7 @@ do
 	arr[$count]=${results[operation"$(( count+1 ))"]}
 	count=$(( count+1 ))
 done
+echo "Array : "
 echo ${arr[@]}
 length=${#arr[@]}
 
@@ -36,4 +38,24 @@ function DescendingOrder() {
 	done
 	echo ${arr[@]}
 }
+
+function AscendingOrder() {
+   for (( i=0; i<$length; i++ ))
+   do
+      for(( j=i+1; j<=$length; j++ ))
+      do
+         if [[ ${arr[i]%.*} -gt ${arr[j]%.*} ]]
+         then
+            temp=${arr[i]}
+            arr[i]=${arr[j]}
+            arr[j]=$temp
+         fi
+      done
+   done
+   echo ${arr[@]}
+}
+
+echo "Descending Order : "
 DescendingOrder
+echo "Ascending Order : "
+ AscendingOrder
